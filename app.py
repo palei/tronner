@@ -9,7 +9,7 @@ class App(object):
 
     def run(self):
         for event in self.events:
-            command.command("LADDER_LOG_WRITE_%s 1" % event.trigger)
+            command.command("LADDERLOG_WRITE_%s 1" % event.trigger)
         
         try:
             while True:
