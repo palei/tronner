@@ -1,27 +1,20 @@
 from __future__ import print_function
 import sys
 
-class Command(object):
-    @staticmethod
-    def say(message):
-        print("SAY %s\n" % message)
+def command(command):
+    print(command)
 
-    @staticmethod
-    def pm(player, message):
-        print("PLAYER_MESSAGE %s %s\n" % (player, message))
+def say(message):
+    command("SAY %s" % message)
 
-    @staticmethod
-    def kick(player, reason="You have been kicked by tronner."):
-        print("KICK %s %s\n" % (player, reason))
+def pm(player, message):
+    command("PLAYER_MESSAGE %s %s" % (player, message))
 
-    @staticmethod
-    def silence(player):
-        print("SILENCE %s\n" % player)
+def kick(player, reason="You have been kicked by tronner."):
+    command("KICK %s %s" % (player, reason))
 
-    @staticmethod
-    def voice(player):
-        print("VOICE %s\n" % player)
+def silence(player):
+    command("SILENCE %s" % player)
 
-    @staticmethod
-    def command(command):
-        print(command)
+def voice(player):
+    command("VOICE %s" % player)

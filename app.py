@@ -1,6 +1,6 @@
-import sys
+import sys, command
 from events import Events
-from command import Command
+
 
 class App(object):
     L = None
@@ -10,7 +10,7 @@ class App(object):
 
     def run(self):
         for event in self.events:
-            Command.command("LADDER_LOG_WRITE_%s 1" % event.trigger)
+            command.command("LADDER_LOG_WRITE_%s 1" % event.trigger)
         
         while True:
             s = sys.stdin.readline()
