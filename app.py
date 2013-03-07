@@ -1,7 +1,6 @@
 import sys, command
 from events import Events
 
-
 class App(object):
     L = None
 
@@ -12,17 +11,19 @@ class App(object):
         for event in self.events:
             command.command("LADDER_LOG_WRITE_%s 1" % event.trigger)
         
-        while True:
-            s = sys.stdin.readline()
-            if not s:
-                pass
-            self.L = s.strip().split()
-            events = self.events.get(self.L[0])
-            if events:
-                for event in events:
-                    event.callback()
-            sys.stdout.flush()
-
+        try:
+            while True:
+                s = sys.stdin.readline()
+                if not s:
+                    pass
+                self.L = s.strip().split()
+                events = self.events.get(self.L[0])
+                if events:
+                    for event in events:
+                        event.callback()
+                sys.stdout.flush()
+        except KeyboardInterrupt:
+            pass
 
     def event(self, e):
         def decorator(callback):
