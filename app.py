@@ -1,5 +1,6 @@
 import sys
 from events import Events
+from command import Command
 
 class App(object):
     L = None
@@ -8,17 +9,20 @@ class App(object):
         self.events = Events()
 
     def run(self):
-        for key, value in self.events:
-            Command.command("LADDER_LOG_WRITE_%s" % key)
+        for event in self.events:
+            Command.command("LADDER_LOG_WRITE_%s 1" % event.trigger)
+        
         while True:
             s = sys.stdin.readline()
             if not s:
-                break
+                pass
             self.L = s.strip().split()
-            fn = self.events.get(self.L[0])
-            if fn:
-                fn()
-                sys.stdin.flush()
+            events = self.events.get(self.L[0])
+            if events:
+                for event in events:
+                    event.callback()
+            sys.stdout.flush()
+
 
     def event(self, e):
         def decorator(callback):

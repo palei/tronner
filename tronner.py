@@ -1,4 +1,3 @@
 from app import App
 
-class Tronner(App):
-    pass
+class Tronner(App): pass

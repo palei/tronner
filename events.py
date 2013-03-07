@@ -4,6 +4,9 @@ class Event(object):
         self.trigger = trigger
         self.callback = callback
 
+    def __repr__(self):
+        return '<Event %r>' % self.trigger
+
 class Events(list):
     def get(self, trigger):
         """Returns a list of callbacks or None"""
