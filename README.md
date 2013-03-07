@@ -1,10 +1,8 @@
 An Armagetron Advanced Event Handling Framework
 ===============================================
-- [Examples](#examples)
-- [Installation](#installation)
 
-# <a id="examples"></a>Examples
-## A simple greeter
+# Examples
+## A mininal greeter program
 
     #!/usr/bin/env python
     from tronner import App
@@ -12,12 +10,26 @@ An Armagetron Advanced Event Handling Framework
 
     @app.event('PLAYER_ENTERED')
     def player_entered():
-        print "Welcome, %s" % app.L[1]
+        print "Greetings, program."
 
     app.run()
 
-# <a id="installation"></a>Installation
+## Command functions
+    from tronner import command
+    @app.event('PLAYER_LEFT')
+    def goodbye(name):
+        command.say("Good bye, %s" % name)
+
+## An event with parameters
+
+    @app.event('DEATH_FRAG killed killer')
+    def death_frag():
+        print "%s killed %s for 1 point." % (killer, killed)
+
+
+# Installation
+First you will need to have [Python](http://python.org) installed on your server. Clone the repository to your scripts folder.
     git clone git@bitbucket.org:noob13/tronner.git
+Alternatively, you can blah blah
 ## Requirements
 
-## Examples
