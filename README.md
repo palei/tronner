@@ -1,5 +1,9 @@
 An Armagetron Advanced Event Handling Framework
 ===============================================
+- [Examples](#examples)
+- [Installation](#installation)
+
+# <a id="examples"></a>Examples
 ## A simple greeter
 
     #!/usr/bin/env python
@@ -12,7 +16,7 @@ An Armagetron Advanced Event Handling Framework
 
     app.run()
 
-## Installation
+# <a id="installation"></a>Installation
     git clone git@bitbucket.org:noob13/tronner.git
 ## Requirements
 
