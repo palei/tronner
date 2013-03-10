@@ -23,11 +23,14 @@ class App(object):
                         event.callback()
                 sys.stdout.flush()
         except KeyboardInterrupt:
-            pass
+            self.before_quit()
 
     def event(self, e, **options):
-        def decorator(callback):
+        def decorator(callback, **options):
             self.events.add(e, callback)
             return callback
         return decorator
+
+    def before_quit():
+        pass
 
