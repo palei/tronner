@@ -31,7 +31,7 @@ class TimedEvent(Thread):
         self.callback = callback
         self.time = time
         self.periodic = periodic
-        self.setDaemon(True)
+        self.setDaemon(True) # kill thread when main thread exits
 
     def run(self):
         self.stopped = False

@@ -55,6 +55,29 @@ The following example demonstrates how one can override the function.
 
     command.command = custom_command
 
+## Tracking players
+
+Tronner comes with some helper classes that help you keep track of the players on the grid.
+
+    :::python
+    from tronner import Players
+    players = Players()
+
+    @app.event('PLAYER_ENTERED <name> <gid> <ip>')
+    def player_entered(name, gid, ip):
+        players.add(name, gid, ip)
+
+    @app.event('PLAYER_LEFT <name>')
+    def player_left(name):
+        players.safe_remove(name)
+
+    @app.event('PLAYER_RENAMED <old_name> <new_name>)
+    def player_renamed(old_name, new_name):
+        players.get(old_name).name = new_name
+
+You can also use the convenience function `register_default_events` which sets all the common events
+for player tracking.
+
 # Installation
 Clone the repository to some directory on your server.
 
@@ -66,7 +89,7 @@ Create a symlink to tronner in your `data/scripts` directory.
     :::bash
     ln -s /path/to/tronner/ tronner
 
-Alternatively, you can add the folder to your `PYTHONPATH` by adding a line like this one to your `.bashrc`.
+Alternatively, you can add the folder to your `PYTHONPATH` by adding a line like this to your `.bashrc`.
 
     :::bash
     export PYTHONPATH=$PYTHONPATH:/path/under/tronner/
