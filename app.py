@@ -25,7 +25,7 @@ class App(object):
         except KeyboardInterrupt:
             pass
 
-    def event(self, e):
+    def event(self, e, **options):
         def decorator(callback):
             self.events.add(e, callback)
             return callback
