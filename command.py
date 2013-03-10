@@ -18,3 +18,6 @@ def silence(player):
 
 def voice(player):
     command("VOICE %s" % player)
+
+def center_message(message):
+    command("CENTER_MESSAGE %s" % message)
