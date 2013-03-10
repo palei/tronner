@@ -1,5 +1,5 @@
 import sys, command
-from events import Events
+from events import Events, TimedEvents
 
 class App(object):
     L = None
@@ -30,8 +30,20 @@ class App(object):
         self.running = False
 
     def event(self, e, **options):
+        if not hasattr(self, 'events'):
+            self.events = Events()
+
         def decorator(callback, **options):
             self.events.add(e, callback)
+            return callback
+        return decorator
+
+    def timed_event(self, e, time, periodic=False):
+        if not hasattr(self, 'timed_events'):
+            self.timed_events = TimedEvents()
+
+        def decorator(callback):
+            self.timed_events.add(e, callback, time, periodic)
             return callback
         return decorator
 

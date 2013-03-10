@@ -20,3 +20,10 @@ class Events(list):
 
     def add(self, trigger, callback):
         self.append(Event(trigger, callback))
+
+class TimedEvent(Event):
+    def __init__(self, trigger, callback, time, periodic=False):
+        super(TimedEvent, self).__init__(trigger, callback)
+        self.time = time
+        self.periodic = periodic
+
