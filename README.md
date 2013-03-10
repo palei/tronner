@@ -55,17 +55,17 @@ The following example demonstrates how you can override the function.
     command.command = custom_command
 
 # Installation
-Clone the repository to some directory on your server:
+Clone the repository to some directory on your server.
 
     :::bash
     git clone git@bitbucket.org:noob13/tronner.git
 
-Add a symlink to tronner to your `data/scripts` directory:
+Create a symlink to tronner to your `data/scripts` directory.
 
     :::bash
     ln -s /path/to/tronner/ tronner
 
-Alternatively, you can add the folder to your PYTHONPATH by adding this line to your `.bashrc`:
+Alternatively, you can add the folder to your `PYTHONPATH` by adding a line like this to your `.bashrc`.
 
     :::bash
     export PYTHONPATH=$PYTHONPATH:/path/under/tronner/
