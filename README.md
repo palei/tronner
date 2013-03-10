@@ -50,10 +50,13 @@ The `spam` function is executed every 10 seconds after round start, and the time
     def goodbye(name):
         command.say("%s has left the server." % name)
 
-The built-in commands include:
-- `command.say(text)`
-- `command.kick(player, reason)`
-- `command.ban(player, time, reason)`
+Command | Ouput
+------- | -----
+`command.say(text)`                 | `SAY <text>`
+`command.kick(player, reason)`      | `KICK <player> <reason>`
+`command.ban(player, time, reason)` | `BAN <player> <time> <reason>`
+`command.center_message(text)`      | `CENTER_MESSAGE <text>`
+`command.silence(player)`           | `SILENCE <player>`
 
 ## Custom command function
 The commands in the command-module write to standard output by default. If you're not using `SPAWN_SCRIPT`, or piping your script output to the server manually, you may need a different way of interacting with the server.
@@ -108,7 +111,7 @@ Create a symlink to tronner in your `data/scripts` directory.
     :::bash
     ln -s /path/to/tronner/ tronner
 
-Alternatively, you can add the folder to your `PYTHONPATH` by adding a line like this to your `.bashrc`.
+Or, alternatively, add the directory containing tronner to your `PYTHONPATH` by adding a line like this to your `.bashrc`.
 
     :::bash
     export PYTHONPATH=$PYTHONPATH:/path/under/tronner/
