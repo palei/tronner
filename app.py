@@ -11,8 +11,9 @@ class App(object):
         for event in self.events:
             command.command("LADDERLOG_WRITE_%s 1" % event.trigger)
         
+        self.running = True
         try:
-            while True:
+            while self.running:
                 s = sys.stdin.readline()
                 if not s:
                     pass
@@ -23,7 +24,10 @@ class App(object):
                         event.callback()
                 sys.stdout.flush()
         except KeyboardInterrupt:
-            self.before_quit()
+            self.before_exit()
+
+    def stop(self):
+        self.running = False
 
     def event(self, e, **options):
         def decorator(callback, **options):
@@ -31,6 +35,6 @@ class App(object):
             return callback
         return decorator
 
-    def before_quit():
+    def before_exit():
         pass
 
