@@ -1,4 +1,5 @@
 import threading
+import time
 
 class Event(object):
     def __init__(self, trigger, callback):
@@ -29,8 +30,21 @@ class TimedEvent(threading.Thread):
         self.time = time
         self.periodic = periodic
 
-    def run(self):
-        pass
+    def start(self):
+        self.stopped = False
+        while not self.stopped:
+            time.sleep(self.time)
+            self.callback()
+            if not self.periodic:
+                break
+
+    def stop(self):
+        self.stopped = True
+
+    def restart(self):
+        self.stop()
+        self.start()
 
 class TimedEvents(Events):
-    pass
+    def add(self, trigger, callback, time, periodic=False):
+        self.append(TimedEvent(trigger, callback, time, periodic))
