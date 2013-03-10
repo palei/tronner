@@ -2,6 +2,8 @@
 Event Handling and Scripting Framework for Armagetron Advanced
 ==============================================================
 
+
+
 # Examples
 ## A minimal application
     :::python
@@ -15,11 +17,23 @@ Event Handling and Scripting Framework for Armagetron Advanced
 
     app.run()
 
+The function can be called anything and does not have to be named after the actual event. For every ladderlog event, multiple event handlers can be defined.
+
 ## An event with parameters
+
+The event variables can be split into tokens and sent to the handler function.
+
     :::python
     @app.event('DEATH_FRAG <killed> <killer>')
     def death_frag(killed, killer):
         print "%s killed %s for 1 point." % (killer, killed)
+
+If the number of variables doesn't match the expected number of parameters, the last parameter will always contain the rest of the string.
+
+    :::python
+    @app.event('CHAT <name> <text>')
+    def handle_chat(name, text):
+        pass
 
 ## Timed events
     :::python
@@ -34,10 +48,15 @@ The `spam` function is executed every 10 seconds after round start, and the time
     from tronner import command
     @app.event('PLAYER_LEFT <name>')
     def goodbye(name):
-        command.say("%s has left the building." % name)
+        command.say("%s has left the server." % name)
+
+The built-in commands include:
+- `command.say(text)`
+- `command.kick(player, reason)`
+- `command.ban(player, time, reason)`
 
 ## Custom command function
-The commmands in the `command`-module write to standard output by default. If you're not using `SPAWN_SCRIPT`, or piping your script output to the server manually, you may need a different way of interacting with the server.
+The commands in the command-module write to standard output by default. If you're not using `SPAWN_SCRIPT`, or piping your script output to the server manually, you may need a different way of interacting with the server.
 
 The following example demonstrates how one can override the function.
     
@@ -79,7 +98,7 @@ You can also use the convenience function `register_default_events` which sets a
 for player tracking.
 
 # Installation
-Clone the repository to some directory on your server.
+Clone the repository to a directory on your server.
 
     :::bash
     git clone git@bitbucket.org:noob13/tronner.git
@@ -96,7 +115,5 @@ Alternatively, you can add the folder to your `PYTHONPATH` by adding a line like
 
 ## Requirements
 
-- [Python](http://python.org) 2.7+
-
-Tronner has not not been tested with earlier versions of python.
+- [Python](http://python.org) 2.6+
 

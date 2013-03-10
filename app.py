@@ -51,3 +51,6 @@ class App(object):
     def before_exit(self):
         pass
 
+    def register_default_events(self, players):
+        pass # TODO
+
