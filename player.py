@@ -10,8 +10,9 @@ class Player(object):
 
 class Players(list):
 
-    def add(self, player):
-        self.append(player)
+    def add(self, name, gid, ip):
+        p = Player(name, gid, ip)
+        self.append(p)
 
     def safe_remove(self, name):
         """Unlike inherited remove function this removes by name and 
