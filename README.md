@@ -60,7 +60,7 @@ An optional keyword argument `name` can be given to timed events. This can be us
     app.timed_events.get("<name>").stop()
 
 ## Command functions
-The command module contains helper function for easy interaction with the server.
+The command module contains helper function for easier interaction with the server.
 
     :::python
     from tronner import command

@@ -27,3 +27,9 @@ def suspend(player, rounds=5):
 
 def kill(player):
     command("KILL %s" % player)
+
+def console_message(message):
+    command("CONSOLE_MESSAGE %s" % message)
+
+def comment(message):
+    command("# %s" % message)

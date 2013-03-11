@@ -37,33 +37,36 @@ class TimedEvent(Thread):
         self.setDaemon(True) # kill thread when main thread exits
 
     def run(self):
-        self.stopped = False
+        self.idle = False
         while True:
             time.sleep(self.seconds)
-            if self.stopped:
-                break
+            if self.idle:
+                continue
             self.callback()
             sys.stdout.flush()
             if not self.periodic:
                 break
 
     def stop(self):
-        self.stopped = True
+        self.idle = True
 
     def restart(self):
-        self.stop()
+        if self.isAlive():
+            self.idle = False
+            return
         self.start()
 
     def __repr__(self):
-        return '<TimedEvent %s %d %s periodic=%s %s>' % (self.trigger, self.seconds, 
+        return '<TimedEvent %s %d %s periodic=%s name=%s>' % (self.trigger, self.seconds, 
             self.callback.__name__, self.periodic, self.name)
 
 class TimedEvents(Events):
     def add(self, trigger, seconds, callback, periodic=False, name=None):
         self.append(TimedEvent(trigger, seconds, callback, periodic, name))
 
-    def get(self, name):
+    def get(self, trigger=None, name=None):
+        if not name:
+            return super(TimedEvents, self).get(trigger)
         for event in self:
             if event.name == name:
                 return event
-        return None
