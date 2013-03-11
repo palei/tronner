@@ -60,7 +60,7 @@ An optional keyword argument `name` can be given to timed events. This can be us
     app.timed_events.get("<name>").stop()
 
 ## Command functions
-The command module contains helper function for interacting with the server.
+The command module contains helper function for easy interaction with the server.
 
     :::python
     from tronner import command
@@ -71,6 +71,7 @@ The command module contains helper function for interacting with the server.
 
 The currently available commands are
 
+    :::python
     command.say(text)                    # SAY <text>
     command.kick(player, reason)         # KICK <player> <reason>
     command.ban(player, time, reason)    # BAN <player> <time> <reason>
