@@ -22,7 +22,12 @@ class App(object):
                 events = self.events.get(self.L[0])
                 if events:
                     for event in events:
-                        event.callback()
+                        param_count = len(event.params)
+                        if param_count > 0:
+                            params = self.L[1:1+param_count]
+                            event.callback(*params)
+                        else:
+                            event.callback()
 
                 timed_events = self.timed_events.get(self.L[0])
                 if timed_events:
@@ -38,7 +43,8 @@ class App(object):
 
     def event(self, e):
         def decorator(callback, *args, **kwargs):
-            self.events.add(e, callback)
+            args = [s.strip('<>') for s in e.split()]
+            self.events.add(args[0], callback, args[1:])
             return callback
         return decorator
 
