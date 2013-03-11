@@ -1,7 +1,7 @@
+Tronner
+=======
 
-Event Handling and Scripting Framework for Armagetron Advanced
-==============================================================
-
+Tronner is a python powered event handling and scripting framework for [Armagetron Advanced](http://armagetronad.net).
 
 
 # Examples
@@ -36,27 +36,42 @@ If the number of variables doesn't match the expected number of parameters, the 
         pass
 
 ## Timed events
-    :::python
-    @app.timed_event('NEW_ROUND', 10, periodic=True)
-    def spam():
-        command.center_message("You're being spammed by tronner")
+The event timer is started after a ladderlog event occurs, and the function is called some seconds later.
 
-The `spam` function is executed every 10 seconds after round start, and the timer resets after every occurance of trigger (`NEW ROUND` in this case).
+    :::python
+    # start sudden death after 5 minutes
+    @app.timed_event('NEW_ROUND', 300)
+    def sudden_death():
+        print 'CYCLE_RUBBER 0.1'
+        print 'CYCLE_BRAKE -100'
+
+To make periodical events a third parameter can be used.
+
+    :::python
+    @app.timed_event('NEW_ROUND', 30, periodic=True)
+    def spawn_random_deathzone():
+        pass
+
+The timer for periodic events is reset after every new occurance of the specified ladderlog event.
+
 
 ## Command functions
     :::python
     from tronner import command
+
     @app.event('PLAYER_LEFT <name>')
     def goodbye(name):
         command.say("%s has left the server." % name)
 
-Command | Ouput
-------- | -----
-`command.say(text)`                 | `SAY <text>`
-`command.kick(player, reason)`      | `KICK <player> <reason>`
-`command.ban(player, time, reason)` | `BAN <player> <time> <reason>`
-`command.center_message(text)`      | `CENTER_MESSAGE <text>`
-`command.silence(player)`           | `SILENCE <player>`
+The currently available commands are
+
+- `command.say(text)`
+- `command.kick(player, reason)`
+- `command.ban(player, time, reason)`
+- `command.center_message(text)`
+- `command.silence(player)`
+- `command.voice(player)`
+- `command.suspend(player, rounds)`
 
 ## Custom command function
 The commands in the command-module write to standard output by default. If you're not using `SPAWN_SCRIPT`, or piping your script output to the server manually, you may need a different way of interacting with the server.
@@ -67,13 +82,8 @@ The following example demonstrates how one can override the function.
     from tronner import command
 
     def custom_command(s):
-        try:
-            fh = fopen('input.txt', 'a')
-            fh.write("%s\n" % s)
-        except IOError:
-            print "Could not write to input file"
-        finally:
-            fh.close()
+        with fopen('input.txt', 'a') as fh:
+            fh.write(s) 
 
     command.command = custom_command
 
@@ -104,17 +114,17 @@ for player tracking.
 Clone the repository to a directory on your server.
 
     :::bash
-    git clone git@bitbucket.org:noob13/tronner.git
+    $ git clone git@bitbucket.org:noob13/tronner.git
 
 Create a symlink to tronner in your `data/scripts` directory.
 
     :::bash
-    ln -s /path/to/tronner/ tronner
+    $ ln -s /path/to/tronner/ tronner
 
 Or, alternatively, add the directory containing tronner to your `PYTHONPATH` by adding a line like this to your `.bashrc`.
 
     :::bash
-    export PYTHONPATH=$PYTHONPATH:/path/under/tronner/
+    $ export PYTHONPATH=$PYTHONPATH:/path/under/tronner/
 
 ## Requirements
 

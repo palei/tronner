@@ -21,3 +21,9 @@ def voice(player):
 
 def center_message(message):
     command("CENTER_MESSAGE %s" % message)
+
+def suspend(player, rounds=5):
+    command("SUSPEND %s %d" % (player, rounds))
+
+def kill(player):
+    command("KILL %s" % player)

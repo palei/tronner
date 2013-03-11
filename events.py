@@ -25,11 +25,12 @@ class Events(list):
         self.append(Event(trigger, callback))
 
 class TimedEvent(Thread):
-    def __init__(self, trigger, callback, time, periodic=False):
+    def __init__(self, trigger, callback, seconds, name=None, periodic=False):
         Thread.__init__(self)
         self.trigger = trigger
         self.callback = callback
-        self.time = time
+        self.seconds = seconds
+        self.name = name
         self.periodic = periodic
         self.setDaemon(True) # kill thread when main thread exits
 

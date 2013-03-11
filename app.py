@@ -36,8 +36,8 @@ class App(object):
     def stop(self):
         self.running = False
 
-    def event(self, e, **options):
-        def decorator(callback, **options):
+    def event(self, e):
+        def decorator(callback, *args, **kwargs):
             self.events.add(e, callback)
             return callback
         return decorator
