@@ -2,8 +2,6 @@ import sys, command
 from events import Events, TimedEvents
 
 class App(object):
-    L = None
-
     def __init__(self):
         self.events = Events()
         self.timed_events = TimedEvents()
@@ -18,18 +16,18 @@ class App(object):
                 s = sys.stdin.readline()
                 if not s:
                     pass
-                self.L = s.strip().split()
-                events = self.events.get(self.L[0])
+                self.line = s.strip().split()
+                events = self.events.get(self.line[0])
                 if events:
                     for event in events:
                         param_count = len(event.params)
                         if param_count > 0:
-                            params = self.L[1:1+param_count]
+                            params = self.line[1:1+param_count]
                             event.callback(*params)
                         else:
                             event.callback()
 
-                timed_events = self.timed_events.get(self.L[0])
+                timed_events = self.timed_events.get(self.line[0])
                 if timed_events:
                     for t in timed_events:
                         t.restart()
