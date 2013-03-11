@@ -15,7 +15,7 @@ class App(object):
             while self.running:
                 s = sys.stdin.readline()
                 if not s:
-                    pass
+                    break
                 self.line = s.strip().split()
                 events = self.events.get(self.line[0])
                 if events:
