@@ -7,7 +7,7 @@ class App(object):
         self.timed_events = TimedEvents()
 
     def run(self):
-        for event in self.events:
+        for event in self.events + self.timed_events:
             command.command("LADDERLOG_WRITE_%s 1" % event.trigger)
         
         self.running = True
@@ -33,6 +33,7 @@ class App(object):
                         t.restart()
 
                 sys.stdout.flush()
+            self.before_exit()
         except KeyboardInterrupt:
             self.before_exit()
 
@@ -46,9 +47,9 @@ class App(object):
             return callback
         return decorator
 
-    def timed_event(self, e, time, periodic=False):
+    def timed_event(self, e, seconds, periodic=False, name=None):
         def decorator(callback):
-            self.timed_events.add(e, callback, time, periodic)
+            self.timed_events.add(e, seconds, callback, periodic, name)
             return callback
         return decorator
 

@@ -1,7 +1,7 @@
 Tronner
 =======
 
-Tronner is a python powered event handling and scripting framework for [Armagetron Advanced](http://armagetronad.net).
+Tronner is a python powered event handling and scripting framework for [Armagetron Advanced](http://armagetronad.net). It makes writing external scripts easy and fun!
 
 
 # Examples
@@ -139,7 +139,7 @@ Or, alternatively, add the directory containing tronner to your `PYTHONPATH` by 
     :::bash
     $ export PYTHONPATH=$PYTHONPATH:/path/under/tronner/
 
-## Requirements
+# Requirements
 
 - [Python](http://python.org) 2.6+
 

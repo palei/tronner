@@ -27,7 +27,7 @@ class Events(list):
         self.append(Event(trigger, callback, params))
 
 class TimedEvent(Thread):
-    def __init__(self, trigger, callback, seconds, name=None, periodic=False):
+    def __init__(self, trigger, seconds, callback, periodic=False, name=None):
         Thread.__init__(self)
         self.trigger = trigger
         self.callback = callback
@@ -38,8 +38,10 @@ class TimedEvent(Thread):
 
     def run(self):
         self.stopped = False
-        while not self.stopped:
-            time.sleep(self.time)
+        while True:
+            time.sleep(self.seconds)
+            if self.stopped:
+                break
             self.callback()
             sys.stdout.flush()
             if not self.periodic:
@@ -52,9 +54,13 @@ class TimedEvent(Thread):
         self.stop()
         self.start()
 
+    def __repr__(self):
+        return '<TimedEvent %s %d %s periodic=%s %s>' % (self.trigger, self.seconds, 
+            self.callback.__name__, self.periodic, self.name)
+
 class TimedEvents(Events):
-    def add(self, trigger, callback, time, periodic=False):
-        self.append(TimedEvent(trigger, callback, time, periodic))
+    def add(self, trigger, seconds, callback, periodic=False, name=None):
+        self.append(TimedEvent(trigger, seconds, callback, periodic, name))
 
     def get(self, name):
         for event in self:
