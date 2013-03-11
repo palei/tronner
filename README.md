@@ -54,8 +54,14 @@ To make periodical events a third parameter can be used.
 
 The timer for periodic events is reset after every new occurance of the specified ladderlog event.
 
+An optional keyword argument `name` can be given to timed events. This can be useful if you want to stop the event at some point.
+    
+    :::python
+    app.timed_events.get("<name>").stop()
 
 ## Command functions
+The command module contains helper function for interacting with the server.
+
     :::python
     from tronner import command
 
@@ -65,15 +71,15 @@ The timer for periodic events is reset after every new occurance of the specifie
 
 The currently available commands are
 
-- `command.say(text)`
-- `command.kick(player, reason)`
-- `command.ban(player, time, reason)`
-- `command.center_message(text)`
-- `command.silence(player)`
-- `command.voice(player)`
-- `command.suspend(player, rounds)`
+    command.say(text)                    # SAY <text>
+    command.kick(player, reason)         # KICK <player> <reason>
+    command.ban(player, time, reason)    # BAN <player> <time> <reason>
+    command.center_message(text)         # CENTER_MESSAGE <text>
+    command.silence(player)              # SILENCE <player>
+    command.voice(player)                # VOICE <player>
+    command.suspend(player, rounds)      # SUSPEND <player>
+    command.include(config)              # INCLUDE <config>
 
-## Custom command function
 The commands in the command-module write to standard output by default. If you're not using `SPAWN_SCRIPT`, or piping your script output to the server manually, you may need a different way of interacting with the server.
 
 The following example demonstrates how one can override the function.
@@ -107,8 +113,15 @@ Tronner comes with some helper classes that help you keep track of the players o
     def player_renamed(old_name, new_name):
         players.get(old_name).name = new_name
 
-You can also use the convenience function `register_default_events` which sets all the common events
-for player tracking.
+The player objects have a built in `stats` attribute which is an instance of `Stats` class. You can use it to store some statistics.
+
+    :::python
+    @app.event('DEATH_FRAG <killed> <killer>')
+    def death_frag(killed, killer):
+        players.get(killed).stats.deaths += 1
+        players.get(killer).stats.kills += 1
+
+The attributes in `Stats` are automatically initiated to `0` if they do not yet exist.
 
 # Installation
 Clone the repository to a directory on your server.

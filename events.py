@@ -55,3 +55,9 @@ class TimedEvent(Thread):
 class TimedEvents(Events):
     def add(self, trigger, callback, time, periodic=False):
         self.append(TimedEvent(trigger, callback, time, periodic))
+
+    def get(self, name):
+        for event in self:
+            if event.name == name:
+                return event
+        return None
