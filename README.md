@@ -57,9 +57,9 @@ The timer for periodic events is reset after every new occurance of the specifie
 An optional keyword argument `name` can be given to timed events. This can be useful if you want to stop and restart the event at some point.
     
     :::python
-    some_event = app.timed_events.get(name="something")
-    some_event.stop()
-    some_event.restart()
+    some_timed_event = app.timed_events.get(name="something")
+    some_timed_event.stop()
+    some_timed_event.restart()
 
 ## Command functions
 The command module contains helper function for easier interaction with the server.

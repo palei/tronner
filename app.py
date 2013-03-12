@@ -45,8 +45,10 @@ class App(object):
 
     def print_debug_info(self):
         """Prints the attributes and values of this object to the console"""
+        command.command("# ")
         for key, value in self.__dict__.items():
             command.comment("%s: %s" % (key, value))
+        command.command("#")
 
     def stop(self):
         self.running = False
