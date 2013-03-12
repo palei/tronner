@@ -5,7 +5,9 @@ Tronner is a python powered event handling and scripting framework for [Armagetr
 
 
 # Examples
-## A minimal application
+
+The minimal setup for an application is shown below.
+
     :::python
     #!/usr/bin/env python
     from tronner import App
@@ -17,9 +19,7 @@ Tronner is a python powered event handling and scripting framework for [Armagetr
 
     app.run()
 
-The function can be called anything and does not have to be named after the actual event. For every ladderlog event, multiple event handlers can be defined.
-
-## An event with parameters
+## Events with parameters
 
 The event variables can be split into tokens and sent to the handler function.
 

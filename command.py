@@ -33,3 +33,6 @@ def console_message(message):
 
 def comment(message):
     command("# %s" % message)
+
+def include(config):
+    command('INCLUDE %s'% config)
