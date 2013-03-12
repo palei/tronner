@@ -37,10 +37,14 @@ class App(object):
         except KeyboardInterrupt:
             self.before_exit()
 
+    def create_event_callback(event, line):
+        pass
+
     def stop(self):
         self.running = False
 
     def event(self, e):
+        """Decorator for adding LadderLog events to the App."""
         def decorator(callback, *args, **kwargs):
             args = [s.strip('<>') for s in e.split()]
             self.events.add(args[0], callback, args[1:])
@@ -48,6 +52,7 @@ class App(object):
         return decorator
 
     def timed_event(self, e, seconds, periodic=False, name=None):
+        """Decorator for adding timed events to the App."""
         def decorator(callback):
             self.timed_events.add(e, seconds, callback, periodic, name)
             return callback
@@ -55,7 +60,3 @@ class App(object):
 
     def before_exit(self):
         pass
-
-    def register_default_events(self, players):
-        pass # TODO
-

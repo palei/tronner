@@ -54,10 +54,12 @@ To make periodical events a third parameter can be used.
 
 The timer for periodic events is reset after every new occurance of the specified ladderlog event.
 
-An optional keyword argument `name` can be given to timed events. This can be useful if you want to stop the event at some point.
+An optional keyword argument `name` can be given to timed events. This can be useful if you want to stop and restart the event at some point.
     
     :::python
-    app.timed_events.get("<name>").stop()
+    some_event = app.timed_events.get(name="something")
+    some_event.stop()
+    some_event.restart()
 
 ## Command functions
 The command module contains helper function for easier interaction with the server.
