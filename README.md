@@ -126,6 +126,13 @@ The player objects have a built in `stats` attribute which is an instance of `St
 
 The attributes in `Stats` are automatically initiated to `0` if they do not yet exist.
 
+## Running examples
+To run any of the examples in the module, you can simply add something like this to your script
+
+    :::python
+    from tronner.examples import greeter
+    greeter.app.run()
+
 # Installation
 Clone the repository to a directory on your server.
 
