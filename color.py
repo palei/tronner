@@ -13,10 +13,10 @@ class Color(object):
         return Color(r, g, b)
 
     def __sub__(self, color):
-        r = max(0, self.r - color.r)
-        g = max(0, self.g - color.g)
-        b = max(0, self.b - color.b)
-        return Color(r, g, b)
+        r = self.r - color.r
+        g = self.g - color.g
+        b = self.b - color.b
+        return Color(abs(r), abs(g), abs(b))
 
     def __repr__(self):
         return '0x%02x%02x%02x' % (self.r, self.g, self.b)
