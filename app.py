@@ -1,5 +1,6 @@
 import sys, command
 from events import Events, TimedEvents
+from datetime import datetime
 
 class App(object):
     def __init__(self):
@@ -44,11 +45,10 @@ class App(object):
         pass
 
     def print_debug_info(self):
-        """Prints the attributes and values of this object to the console"""
-        command.command("# ")
+        """Prints the attributes of this object to the console"""
+        command.command("# %s" % datetime.now().strftime("%H:%M:%S"))
         for key, value in self.__dict__.items():
             command.comment("%s: %s" % (key, value))
-        command.command("#")
 
     def stop(self):
         self.running = False
