@@ -6,7 +6,7 @@ class App(object):
         self.events = Events()
         self.timed_events = TimedEvents()
 
-    def run(self):
+    def run(self, debug=False):
         for event in self.events + self.timed_events:
             command.command("LADDERLOG_WRITE_%s 1" % event.trigger)
         
@@ -32,6 +32,9 @@ class App(object):
                     for t in timed_events:
                         t.restart()
 
+                if debug:
+                    self.print_debug_info()
+
                 sys.stdout.flush()
             self.before_exit()
         except KeyboardInterrupt:
@@ -39,6 +42,11 @@ class App(object):
 
     def create_event_callback(event, line):
         pass
+
+    def print_debug_info(self):
+        """Prints the attributes and values of this object to the console"""
+        for key, value in self.__dict__.items():
+            command.comment("%s: %s" % (key, value))
 
     def stop(self):
         self.running = False
