@@ -46,7 +46,7 @@ class App(object):
 
     def print_debug_info(self):
         """Prints the attributes of this object to the console"""
-        command.command("# %s" % datetime.now().strftime("%H:%M:%S"))
+        command.command("# %s" % datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         for key, value in self.__dict__.items():
             command.comment("%s: %s" % (key, value))
 
