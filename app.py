@@ -42,7 +42,11 @@ class App(object):
             self.before_exit()
 
     def create_event_callback(event, line):
-        pass
+        for param in event.params:
+            parts = param.split(':')
+            if parts[0] == 'int':
+                pass
+
 
     def print_debug_info(self):
         """Prints the attributes of this object to the console"""
