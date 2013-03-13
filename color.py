@@ -1,3 +1,4 @@
+from random import randint as rint
 
 class Color(object):
     def __init__(self, r=0xff, g=0xff, b=0xff):
@@ -50,6 +51,10 @@ def colorize(text, color):
 def minmax(value):
     """Makes sure color value stays within boundaries."""
     return min(0xff, max(0, value))
+
+def random_color(light=True):
+    low = 0xbb if light else 0
+    return Color(rint(low, 0xff), rint(low, 0xff), rint(0xff))
 
 def gradient(text, start_color, end_color):
     """Gives text a fancy color gradient."""
