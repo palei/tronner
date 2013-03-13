@@ -11,24 +11,38 @@ class Color(object):
         return Color(r, g, b)
 
     def __sub__(self, color):
-        """Subtracts color from this color and returns the result"""
+        """Subtracts color from this color and returns the result."""
         r = minmax(self.r - color.r)
         g = minmax(self.g - color.g)
         b = minmax(self.b - color.b)
         return Color(r, g, b)
 
+    def __div__(self, number):
+        """Divides this color by a number."""
+        r = self.r / number
+        g = self.g / number
+        b = self.b / number
+        return Color(r, g, b)
+
+    def __rdiv__(self, number):
+        """Called when number is divided by color."""
+        return self.__div__(number)
+
     def __repr__(self):
         return '0x%02x%02x%02x' % (abs(self.r), abs(self.g), abs(self.b))
 
-WHITE   = Color(255, 255, 255)
-YELLOW  = Color(255, 255, 0)
-RED     = Color(255, 0, 0)
-GREEN   = Color(0, 255, 0)
-BLUE    = Color(0, 0 , 255)
-CYAN    = Color(0, 255, 255) 
-BLACK   = Color(0, 0, 0)
-RESET   = Color(255, 255, 0x7c)
-
+BLACK     = Color(0, 0, 0)
+WHITE     = Color(255, 255, 255)
+YELLOW    = Color(255, 255, 0)
+RED       = Color(255, 0, 0)
+GREEN     = Color(0, 255, 0)
+BLUE      = Color(0, 0 , 255)
+CYAN      = Color(0, 255, 255) 
+RESET     = Color(255, 255, 0x7c)
+ORANGE    = Color(0xff, 0x66, 00)
+PINK      = Color(0xff, 0x4b, 0xc2)
+GRAY      = Color(0x99, 0x99, 0x99)
+LIME      = Color(0xba, 0xfb, 0x8b)
 
 def colorize(text, color):
     return "%s%s%s" % (color, text, RESET)
