@@ -45,7 +45,7 @@ class App(object):
     def parse_callback_params(self, event, args):
         params = dict()
         for param, value in zip(event.params, args):
-            param = a.strip('<>')
+            param = param.strip('<>')
             params[param] = value
         return params
 
