@@ -18,15 +18,17 @@ class App(object):
                 if not s:
                     break
 
-                self.line = s.strip().split()
-                events = self.events.get(self.line[0])
+                self._line = s.strip().split()
+                trigger, args = self._line[0], self._line[1:]
+
+                events = self.events.get(trigger)
                 
                 if events:
                     for event in events:
-                        params = self.parse_callback_params(event, self.line)
+                        params = self.parse_callback_params(event, args)
                         event.callback(**params)
 
-                timed_events = self.timed_events.get(self.line[0])
+                timed_events = self.timed_events.get(trigger)
                 
                 if timed_events:
                     for t in timed_events:
@@ -40,13 +42,15 @@ class App(object):
         except KeyboardInterrupt:
             self.before_exit()
 
-    def parse_callback_params(self, event, line):
+    def parse_callback_params(self, event, args):
         params = dict()
-        for param, value in zip(event.params, line[1:]):
+        for param, value in zip(event.params, args):
             param = a.strip('<>')
             params[param] = value
         return params
 
+    def get_line(self):
+        return self._line
 
     def print_debug_info(self):
         """Prints the attributes of this object to the console"""
