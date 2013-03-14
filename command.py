@@ -39,3 +39,6 @@ def include(config):
 
 def sinclude(config):
     command('SINCLUDE %s' % config)
+
+def rinclude(config):
+    command('RINCLUDE %s' % config)
