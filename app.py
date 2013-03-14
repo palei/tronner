@@ -42,6 +42,9 @@ class App(object):
         except KeyboardInterrupt:
             self.before_exit()
 
+        except TypeError, e:
+            command.comment("TypeError: %s " % e)
+
     def parse_callback_params(self, event, args):
         params = dict()
         for param, value in zip(event.params, args):
