@@ -56,6 +56,14 @@ def random_color(light=True):
     low = 0xbb if light else 0
     return Color(rint(low, 0xff), rint(low, 0xff), rint(0xff))
 
+def random_color_text(text, light=True):
+    result = ""
+    for letter in text:
+        result += random_color()
+        reuslt += letter
+    result += RESET
+    return result
+
 def gradient(text, start_color, end_color):
     """Gives text a fancy color gradient."""
     length = len(text)
