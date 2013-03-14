@@ -36,3 +36,6 @@ def comment(message):
 
 def include(config):
     command('INCLUDE %s'% config)
+
+def sinclude(config):
+    command('SINCLUDE %s' % config)

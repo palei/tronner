@@ -10,7 +10,7 @@ class Event(object):
 
     def __repr__(self):
         return '<Event %s %s(%s)>' % (self.trigger, 
-            self.callback.__name__, ', '.join(self.params))
+            self.callback.__name__, ', '.join([p.strip('<>') for p in self.params]))
 
 class Events(list):
     def get(self, trigger):
