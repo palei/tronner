@@ -47,9 +47,21 @@ class App(object):
 
     def parse_callback_params(self, event, args):
         params = dict()
+        i = 0
         for param, value in zip(event.params, args):
             param = param.strip('<>')
+            
+            if param.endswith('+'):
+                params[param.strip('+')] = ' '.join(args[i:])
+                break
+            
+            if param.startswith('int'):
+                param = param.split(':')[1]
+                value = parse_int(value)
+            
             params[param] = value
+
+            i += 1
         return params
 
     def get_line(self):
@@ -82,3 +94,11 @@ class App(object):
 
     def before_exit(self):
         pass
+
+
+def parse_int(string):
+    """Returns 0 if string can't be converted to int."""
+    try:
+        return int(string)
+    except ValueError:
+        return 0
