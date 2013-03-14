@@ -17,18 +17,17 @@ class App(object):
                 s = sys.stdin.readline()
                 if not s:
                     break
+
                 self.line = s.strip().split()
                 events = self.events.get(self.line[0])
+                
                 if events:
                     for event in events:
-                        param_count = len(event.params)
-                        if param_count > 0:
-                            params = self.line[1:1+param_count]
-                            event.callback(*params)
-                        else:
-                            event.callback()
+                        params = self.parse_callback_params(event, self.line)
+                        event.callback(**params)
 
                 timed_events = self.timed_events.get(self.line[0])
+                
                 if timed_events:
                     for t in timed_events:
                         t.restart()
@@ -41,11 +40,12 @@ class App(object):
         except KeyboardInterrupt:
             self.before_exit()
 
-    def create_event_callback(event, line):
-        for param in event.params:
-            parts = param.split(':')
-            if parts[0] == 'int':
-                pass
+    def parse_callback_params(self, event, line):
+        params = dict()
+        for param, value in zip(event.params, line[1:]):
+            param = a.strip('<>')
+            params[param] = value
+        return params
 
 
     def print_debug_info(self):
@@ -60,8 +60,9 @@ class App(object):
     def event(self, e):
         """Decorator for adding LadderLog events to the App."""
         def decorator(callback, *args, **kwargs):
-            args = [s.strip('<>') for s in e.split()]
-            self.events.add(args[0], callback, args[1:])
+            args = e.split()
+            trigger, params = args[0], args[1:]
+            self.events.add(trigger, callback, params)
             return callback
         return decorator
 
