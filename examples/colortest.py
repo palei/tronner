@@ -23,5 +23,7 @@ def new_round():
     command.say(gradient("This from white to blue.", WHITE, BLUE))
     command.say(gradient("And this to red from yellow.", YELLOW, RED))
 
+    command.say(random_color_text("This should be color quite randomly."))
+
 if __name__ == '__main__':
     app.run()

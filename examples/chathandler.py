@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from tronner import App
+from tronner import App, command
 
 app = App()
 

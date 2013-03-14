@@ -54,14 +54,14 @@ def minmax(value):
 
 def random_color(light=True):
     low = 0xbb if light else 0
-    return Color(rint(low, 0xff), rint(low, 0xff), rint(0xff))
+    return Color(rint(low, 0xff), rint(low, 0xff), rint(low, 0xff))
 
 def random_color_text(text, light=True):
     result = ""
     for letter in text:
-        result += random_color()
-        reuslt += letter
-    result += RESET
+        result += str(random_color())
+        result += letter
+    result += str(RESET)
     return result
 
 def gradient(text, start_color, end_color):
