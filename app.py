@@ -51,8 +51,8 @@ class App(object):
         for param, value in zip(event.params, args):
             param = param.strip('<>')
             
-            if param.endswith('+'):
-                params[param.strip('+')] = ' '.join(args[i:])
+            if param.endswith('...'):
+                params[param.strip('...')] = ' '.join(args[i:])
                 break
             
             if param.startswith('int'):
