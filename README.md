@@ -3,10 +3,6 @@ Tronner
 
 Tronner is a python powered event handling and scripting framework for [Armagetron Advanced](http://armagetronad.net). It's easy to use and makes external scripting quite a bit easier.
 
-# Requirements
-
-- [Python](http://python.org) 2.7.x Standard Library
-
 # Installation
 
 Clone the repository to a directory on your server.
@@ -18,6 +14,8 @@ Create a symlink to tronner in your `data/scripts` directory.
 
     :::bash
     $ ln -s /path/to/tronner/ tronner
+
+You will also need the [Python 2.7 Standard Library](http://python.org).
 
 # Examples
 
@@ -111,7 +109,7 @@ The commands are written to standard output by default. Depending on how you run
 
 ## Tracking players
 
-Tronner comes with some helper classes that help you keep track of stuff that happens on the grid.
+Tronner comes with some helper classes that let you keep track of stuff that happens on the grid.
 
     :::python
     from tronner import Players
@@ -160,3 +158,35 @@ More example applications can be found in the `examples` module. To try them out
 # Planned features
 
 - SQLite bindings
+
+# Available Ladder Log Events
+
+AUTHORITY_BLURB <blurb> <player> <text>
+BASEZONE_CONQUERED <team> <cx> <cy>
+BASEZONE_CONQUERER <player>
+CHAT <chatter> [/me] <chat string>
+COMMAND <command> <player> <text>
+DEATH_FRAG <prey> <predator>
+DEATH_SUICIDE <player>
+DEATH_TEAMKILL <prey> <predator>
+ENCODING <charset>
+GAME_END <date and time>
+GAME_TIME <time>
+MATCH_WINNER <team> <players>
+NEW_MATCH <date and time>
+NEW_ROUND <date and time>
+NUM_HUMANS <number of humans>
+ONLINE_PLAYER <name> [<ping> [<team>]]
+PLAYER_ENTERED <name> <IP> <screen name>
+PLAYER_LEFT <name> <IP>
+PLAYER_RENAMED <old name> <new name> <ip> <screen name>
+POSITIONS <team> <player1 player2 ...>
+ROUND_SCORE <score difference> <player> [<team>]
+ROUND_SCORE_TEAM <score difference> <team>
+ROUND_WINNER <team> <players>
+SACRIFICE <hole user> <hole maker <wall owner>
+TEAM_CREATED <team name>
+TEAM_DESTROYED <team name>
+TEAM_PLAYER_ADDED <team name> <player>
+TEAM_PLAYER_REMOVED <team name> <player>
+TEAM_RENAMED <old team name> <new team name>
