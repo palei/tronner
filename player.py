@@ -1,17 +1,17 @@
 
 class Player(object):
-    def __init__(self, name, gid, ip):
-        self.name = name
-        self.gid = gid # normalized name before authentication
+    def __init__(self, name, ip=None, screen_name=None):
+        self.name = name # becomes GID once authenticated
         self.ip = ip
+        self.screen_name = screen_name
 
     def __repr__(self):
-        return '<Player %s %s %s>' % (self.name, self.gid, self.ip)
+        return '<Player %s %s %s>' % (self.name, self.ip, self.screen_name)
 
 class Players(list):
 
-    def add(self, name, gid, ip):
-        p = Player(name, gid, ip)
+    def add(self, name, ip=None, screen_name=None):
+        p = Player(name, ip, screen_name)
         self.append(p)
 
     def safe_remove(self, name):
@@ -30,5 +30,5 @@ class Players(list):
                 return player
 
 if __name__ == '__main__':
-    player = Player('noob13', 'noob13@forums', '127.0.0.1')
+    player = Player('albert', '127.0.0.1', 'Albert')
     print player

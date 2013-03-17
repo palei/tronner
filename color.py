@@ -52,8 +52,8 @@ def minmax(value):
     """Makes sure color value stays within boundaries."""
     return min(0xff, max(0, value))
 
-def random_color(light=True):
-    low = 0xbb if light else 0
+def random_color(light=False):
+    low = 0x88 if light else 0
     return Color(rint(low, 0xff), rint(low, 0xff), rint(low, 0xff))
 
 def random_color_text(text, light=True):

@@ -15,7 +15,7 @@ Create a symlink to tronner in your `data/scripts` directory.
     :::bash
     $ ln -s /path/to/tronner/ tronner
 
-You will also need the [Python 2.7 Standard Library](http://python.org).
+You should also have the [Python 2.7 Standard Library](http://python.org) installed.
 
 # Examples
 
@@ -34,7 +34,7 @@ The most basic application structure looks like this.
 
 ## Events with parameters
 
-Variables from ladder log can be passed as keyword arguments to your callback function.
+Variables from ladder log can be passed as keyword arguments to the callback function.
 
     :::python
     @app.event('DEATH_FRAG <killed> <killer>')
@@ -59,7 +59,7 @@ The part before the colon will be evaluated as python and should map to an actua
 
 ## Timed events
 
-Timed events are triggered a number of seconds after a ladder log event occurs. The following function would be called 5 minutes after a round starts.
+Timed events are triggered a number of seconds after a ladder log event occurs. The following function is called 5 minutes after a round starts.
 
     :::python
     @app.timed_event('NEW_ROUND', 300)
@@ -123,9 +123,12 @@ Tronner comes with some helper classes that let you keep track of stuff that hap
     def player_left(name):
         players.safe_remove(name)
 
-    @app.event('PLAYER_RENAMED <old_name> <new_name>)
-    def player_renamed(old_name, new_name):
-        players.get(old_name).name = new_name
+    @app.event('PLAYER_RENAMED <old_name> <new_name> <ip> <screen_name>)
+    def player_renamed(old_name, new_name, ip, screen_name):
+        player = players.get(old_name)
+        if player:
+            player.name = new_name
+            player.screen_name = screen_name
 
 The player objects have a built in `stats` attribute which is an instance of `Stats` class. You can use it to store some statistics.
 
@@ -157,36 +160,36 @@ More example applications can be found in the `examples` module. To try them out
 
 # Planned features
 
-- SQLite bindings
+- SQLite bindings for saving statistics
 
 # Available Ladder Log Events
 
-AUTHORITY_BLURB <blurb> <player> <text>
-BASEZONE_CONQUERED <team> <cx> <cy>
-BASEZONE_CONQUERER <player>
-CHAT <chatter> [/me] <chat string>
-COMMAND <command> <player> <text>
-DEATH_FRAG <prey> <predator>
-DEATH_SUICIDE <player>
-DEATH_TEAMKILL <prey> <predator>
-ENCODING <charset>
-GAME_END <date and time>
-GAME_TIME <time>
-MATCH_WINNER <team> <players>
-NEW_MATCH <date and time>
-NEW_ROUND <date and time>
-NUM_HUMANS <number of humans>
-ONLINE_PLAYER <name> [<ping> [<team>]]
-PLAYER_ENTERED <name> <IP> <screen name>
-PLAYER_LEFT <name> <IP>
-PLAYER_RENAMED <old name> <new name> <ip> <screen name>
-POSITIONS <team> <player1 player2 ...>
-ROUND_SCORE <score difference> <player> [<team>]
-ROUND_SCORE_TEAM <score difference> <team>
-ROUND_WINNER <team> <players>
-SACRIFICE <hole user> <hole maker <wall owner>
-TEAM_CREATED <team name>
-TEAM_DESTROYED <team name>
-TEAM_PLAYER_ADDED <team name> <player>
-TEAM_PLAYER_REMOVED <team name> <player>
-TEAM_RENAMED <old team name> <new team name>
+    AUTHORITY_BLURB <blurb> <player> <text>
+    BASEZONE_CONQUERED <team> <cx> <cy>
+    BASEZONE_CONQUERER <player>
+    CHAT <chatter> [/me] <chat string>
+    COMMAND <command> <player> <text>
+    DEATH_FRAG <prey> <predator>
+    DEATH_SUICIDE <player>
+    DEATH_TEAMKILL <prey> <predator>
+    ENCODING <charset>
+    GAME_END <date and time>
+    GAME_TIME <time>
+    MATCH_WINNER <team> <players>
+    NEW_MATCH <date and time>
+    NEW_ROUND <date and time>
+    NUM_HUMANS <number of humans>
+    ONLINE_PLAYER <name> [<ping> [<team>]]
+    PLAYER_ENTERED <name> <IP> <screen name>
+    PLAYER_LEFT <name> <IP>
+    PLAYER_RENAMED <old name> <new name> <ip> <screen name>
+    POSITIONS <team> <player1 player2 ...>
+    ROUND_SCORE <score difference> <player> [<team>]
+    ROUND_SCORE_TEAM <score difference> <team>
+    ROUND_WINNER <team> <players>
+    SACRIFICE <hole user> <hole maker <wall owner>
+    TEAM_CREATED <team name>
+    TEAM_DESTROYED <team name>
+    TEAM_PLAYER_ADDED <team name> <player>
+    TEAM_PLAYER_REMOVED <team name> <player>
+    TEAM_RENAMED <old team name> <new team name>
