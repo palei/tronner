@@ -1,3 +1,4 @@
+from __future__ import print_function
 
 class Player(object):
     def __init__(self, name, ip=None, screen_name=None):
@@ -31,4 +32,4 @@ class Players(list):
 
 if __name__ == '__main__':
     player = Player('albert', '127.0.0.1', 'Albert')
-    print player
+    print(player)

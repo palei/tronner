@@ -1,6 +1,7 @@
-import sys, command
-from events import Events, TimedEvents
+import sys
 from datetime import datetime
+from .events import Events, TimedEvents
+from . import command
 
 class App(object):
     def __init__(self):
@@ -42,7 +43,7 @@ class App(object):
         except KeyboardInterrupt:
             self.before_exit()
 
-        except TypeError, e:
+        except TypeError as e:
             command.comment("TypeError: %s " % e)
 
     def parse_callback_params(self, event, args):

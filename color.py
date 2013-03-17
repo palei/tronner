@@ -1,3 +1,4 @@
+from __future__ import print_function
 from random import randint as rint
 
 class Color(object):
@@ -77,9 +78,7 @@ def gradient(text, start_color, end_color):
     step_r = delta_r / length
     step_g = delta_g / length
     step_b = delta_b / length
-
-    print step_r, step_g, step_b
-
+    
     result = ""
     current_color = start_color
 
@@ -90,5 +89,5 @@ def gradient(text, start_color, end_color):
     return "%s%s" % (result, RESET)
 
 if __name__ == '__main__':
-    print gradient("ABCDE", BLUE, GREEN)
+    print(gradient("ABCDE", BLUE, GREEN))
 

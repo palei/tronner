@@ -145,14 +145,14 @@ The attributes in `Stats` are automatically initiated to `0` if they do not yet 
 Probably the most useless thing in this package lets you add some color to your messages.
 
     :::python
-    from tronner.color import YELLOW, RED, BLUE, LIME, colorize, gradient
-    orange = RED + YELLOW
+    from tronner.color import YELLOW, RED, BLUE, LIME, colorize, gradient, Color
+    orange = Color(0xff, 0x66, 0)
     colorize("Hello!", BLUE)
     gradient("This is some text", LIME, BLUE)
 
 ## More examples
 
-More example applications can be found in the `examples` module. To try them out you can simply import the `app` object in your script and run it.
+More example applications can be found in the `examples` directory. To try them out, can import the `app` object in your script and run it.
 
     :::python
     from tronner.examples import greeter
@@ -164,6 +164,7 @@ More example applications can be found in the `examples` module. To try them out
 
 # Available Ladder Log Events
 
+    :::None
     AUTHORITY_BLURB <blurb> <player> <text>
     BASEZONE_CONQUERED <team> <cx> <cy>
     BASEZONE_CONQUERER <player>
