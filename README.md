@@ -1,7 +1,7 @@
 Tronner
 =======
 
-Tronner is a python powered event handling and scripting framework for [Armagetron Advanced](http://armagetronad.net). It's easy to use and makes external scripting quite a bit easier.
+Tronner is a python powered event handling and scripting framework for [Armagetron Advanced](http://armagetronad.net). 
 
 # Installation
 
@@ -15,7 +15,7 @@ Create a symlink to tronner in your `data/scripts` directory.
     :::bash
     $ ln -s /path/to/tronner/ tronner
 
-You should also have the [Python 2.7 Standard Library](http://python.org) installed.
+Also make sure your version of [Python](http://python.org) is at least 2.6.
 
 # Examples
 
@@ -94,14 +94,14 @@ The command module contains helper function for easier interaction with the serv
     def goodbye(name):
         command.say("%s has left the server." % name)
 
-For a list of available command functions, take a look at the [command module in the source files](https://bitbucket.org/noob13/tronner/src/39273f1cb135700201d5900fa3566d47e0cce24c/command.py?at=master).
+For a full list of available command functions, take a look at the [command module in the source files](https://bitbucket.org/noob13/tronner/src/master/command.py).
 
 The commands are written to standard output by default. Depending on how you run your server, this may not be suitable for you. For example, if you're not using `SPAWN_SCRIPT` or piping the output of your script to the server directly, you may need to override the main command function.
 
     :::python
     from tronner import command
-
     def custom_command(s):
+        """Untested example. Appends s to end of input.txt"""
         with fopen('input.txt', 'a') as fh:
             fh.write(s) 
 
@@ -164,7 +164,7 @@ More example applications can be found in the `examples` directory. To try them 
 
 # Available Ladder Log Events
 
-    :::None
+    :::html
     AUTHORITY_BLURB <blurb> <player> <text>
     BASEZONE_CONQUERED <team> <cx> <cy>
     BASEZONE_CONQUERER <player>
