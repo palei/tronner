@@ -51,7 +51,11 @@ class App(object):
         i = 0
         for param, value in zip(event.params, args):
             param = param.strip('<>')
-            
+            parts = param.split(':')
+
+            if len(parts) > 1:
+                eval(parts[0])
+
             if param.endswith('...'):
                 params[param.strip('...')] = ' '.join(args[i:])
                 break

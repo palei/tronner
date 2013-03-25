@@ -15,7 +15,7 @@ Create a symlink to tronner in your `data/scripts` directory.
     :::bash
     $ ln -s /path/to/tronner/ tronner
 
-Also make sure your version of [Python](http://python.org) is at least 2.6.
+Also make sure your version of python is at least 2.6!
 
 # Examples
 
@@ -188,7 +188,7 @@ More example applications can be found in the `examples` directory. To try them 
     ROUND_SCORE <score difference> <player> [<team>]
     ROUND_SCORE_TEAM <score difference> <team>
     ROUND_WINNER <team> <players>
-    SACRIFICE <hole user> <hole maker <wall owner>
+    SACRIFICE <hole user> <hole maker> <wall owner>
     TEAM_CREATED <team name>
     TEAM_DESTROYED <team name>
     TEAM_PLAYER_ADDED <team name> <player>
