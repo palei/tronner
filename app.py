@@ -50,6 +50,7 @@ class App(object):
         params = dict()
         i = 0
         for param, value in zip(event.params, args):
+
             param = param.strip('<>')
             parts = param.split(':')
 
@@ -59,7 +60,14 @@ class App(object):
             if param.endswith('...'):
                 params[param.strip('...')] = ' '.join(args[i:])
                 break
-            
+
+            # TODO this shit
+
+            #if ':' in param:
+            #    parts = param.split(':', 2)
+            #    fn, param = parts[0], param[1]
+            #    eval(fn)(param)
+
             if param.startswith('int'):
                 param = param.split(':')[1]
                 value = parse_int(value)
