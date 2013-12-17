@@ -3,7 +3,7 @@ Tronner
 
 Tronner is a python powered event handling and scripting framework for [Armagetron Advanced](http://armagetronad.net). 
 
-**Please note that this is still very much a work in progress and many of the things in this package are likely to change.**
+This is still work in progress and many things are subject to change.
 
 ## Getting started
 
