@@ -1,11 +1,9 @@
 Tronner
 =======
 
-Tronner is a python powered event handling and scripting framework for [Armagetron Advanced](http://armagetronad.net). 
+Tronner is a python powered event handling and scripting framework for [Armagetron Advanced](http://armagetronad.net). This is still work in progress and many things are subject to change.
 
-This is still work in progress and many things are subject to change.
-
-## Getting started
+### Getting started
 
 The most basic application structure looks like this.
 
@@ -139,7 +137,7 @@ def death_frag(killed, killer):
 
 The attributes in `Stats` are automatically initiated to `0` if they do not yet exist.
 
-## Color module
+### Color module
 
 Probably the most useless thing in this package lets you add some color to your messages.
 
@@ -159,11 +157,11 @@ from tronner.examples import greeter
 greeter.app.run()
 ```
 
-# Planned features
+### Planned features
 
 - SQLite bindings for saving statistics
 
-# Available Ladder Log Events
+### Available Ladder Log Events
 
 ```
 AUTHORITY_BLURB <blurb> <player> <text>
@@ -197,7 +195,7 @@ TEAM_PLAYER_REMOVED <team name> <player>
 TEAM_RENAMED <old team name> <new team name>
 ```
 
-## Installation
+### Installation
 
 Clone the repository to a directory on your server.
 
