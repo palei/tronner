@@ -1,11 +1,11 @@
 Tronner
 =======
 
-Tronner is a python powered event handling and scripting framework for [Armagetron Advanced](http://armagetronad.net). This is still work in progress and many things are subject to change.
+Tronner is a python powered event handling and scripting framework for [Armagetron Advanced](http://armagetronad.net). It reacts to events in the game servers ladder log.
 
 ### Getting started
 
-The most basic application structure looks like this.
+A minimal tronner application looks like this:
 
 ```python
 #!/usr/bin/env python
@@ -18,6 +18,12 @@ def player_entered():
 
 app.run()
 ```
+
+### Running it
+
+0. Read installation notes at the bottom of this readme.
+1. Place script into your `scripts` directory.
+2. Spawn the script with the `SPAWN_SCRIPT` command.
 
 ### Events with parameters
 
@@ -90,7 +96,7 @@ def goodbye(name):
 
 For a full list of available command functions, take a look at the command module in the source files.
 
-The commands are written to standard output by default. Depending on how you run your server, this may not be suitable for you. For example, if you're not using `SPAWN_SCRIPT` or piping the output of your script to the server directly, you may need to override the main command function.
+The commands are written to standard output by default. Depending on how you run your server, this may not be suitable for you. For example, if you are not using `SPAWN_SCRIPT` or piping the output of your script to the server directly, you may need to override the main command function.
 
 ```python
 from tronner import command
