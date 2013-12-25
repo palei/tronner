@@ -57,16 +57,23 @@ class App(object):
                 params[param.strip('...')] = ' '.join(args[i:])
                 break
 
-            # TODO this shit
+            """
+            Maybe evaluate as python in the future.
 
-            #if ':' in param:
-            #    parts = param.split(':', 2)
-            #    fn, param = parts[0], param[1]
-            #    eval(fn)(param)
+            if ':' in param:
+                parts = param.split(':', 2)
+                fn, param = parts[0], param[1]
+                eval(fn)(param)
+            """
+
 
             if param.startswith('int'):
                 param = param.split(':')[1]
                 value = parse_int(value)
+
+            if param.startswith('float'):
+                param = param.split(':')[1]
+                value = parse_float(value)
             
             params[param] = value
 
