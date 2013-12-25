@@ -122,3 +122,11 @@ def parse_int(string):
         return int(string)
     except ValueError:
         return 0
+
+
+def parse_float(string):
+    """Returns 0 if string can't be converted to float."""
+    try:
+        return float(string)
+    except ValueError:
+        return 0

@@ -1,11 +1,7 @@
 Tronner
 =======
 
-Tronner is a python powered event handling and scripting framework for [Armagetron Advanced](http://armagetronad.net). It reacts to events in the game servers ladder log.
-
-### Getting started
-
-A minimal tronner application looks like this:
+Tronner is a python powered event handling and scripting framework for [Armagetron Advanced](http://armagetronad.net). It reacts to events in the game servers ladder log. Inspired by popular web-frameworks such as [Flask](http://flask.pocoo.org), the syntax for creating events looks like this:
 
 ```python
 #!/usr/bin/env python
@@ -21,9 +17,9 @@ app.run()
 
 ### Running it
 
-0. Read installation notes at the bottom of this readme.
-1. Place script into your `scripts` directory.
-2. Spawn the script with the `SPAWN_SCRIPT` command.
+1. Read installation notes at the bottom of this readme.
+2. Place script into your `scripts` directory.
+3. Spawn the script with the `SPAWN_SCRIPT` command.
 
 ### Events with parameters
 
@@ -43,7 +39,7 @@ def chat_handler(name, text):
     print "%s said: %s" % (name, text)
 ```
 
-If you're expecting the variable to be something other than string, you can use the following syntax.
+If you're expecting the variable to be something other than string, you can use a variable-prefix like in the example below.
 
 ```python
 @app.event('ROUND_SCORE <int:score> <name>')
@@ -51,7 +47,7 @@ def round_score(name, score):
     total_score += score
 ```
 
-The part before the colon will be evaluated as python and should map to an actual function.
+The part before the colon can either be `int` or `float`.
 
 ### Timed events
 
@@ -206,7 +202,7 @@ TEAM_RENAMED <old team name> <new team name>
 Clone the repository to a directory on your server.
 
 ```bash
-$ git clone git@bitbucket.org:noob13/tronner.git
+$ git clone git@github.com:palei/tronner.git
 ```
 Create a symlink to tronner in your `data/scripts` directory.
 
